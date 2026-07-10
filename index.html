@@ -1,95 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drop of MyurENG</title>
-    <style>
-        body { 
-            font-family: sans-serif; 
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9; 
-        }
-
-        /* --- SECCIÓN DE PATROCINIO --- */
-        .footer-patrocinio {
-            margin-top: auto; /* Empuja el footer al fondo */
-            width: 100%;
-            background-color: #ffffff;
-            border-top: 1px solid #ddd;
-            padding: 15px 0;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* --- BOTÓN DE MANO (SECRET ACCESS) --- */
-        .admin-button {
-            position: fixed;
-            right: 20px;
-            bottom: 70px; /* Arriba del área de patrocinio */
-            
-            /* Ajusta el tamaño del contenedor según el tamaño real de tu mano */
-            width: 80px;  
-            height: 80px;
-            
-            cursor: pointer;
-            z-index: 100; /* Asegura que esté por encima de otros elementos */
-
-            /* --- ESTILOS DE IMAGEN DE FONDO --- */
-            background-image: url('admin-hand.png'); 
-            background-size: contain; /* Ajusta la imagen para que quepa entera sin cortarse */
-            background-repeat: no-repeat; /* No repetir la imagen */
-            background-position: center bottom; /* Centrada horizontalmente, pegada abajo */
-            background-color: transparent; /* QUITAMOS EL COLOR DE RESPALDO */
-
-            /* --- ELIMINAR EL CUADRO --- */
-            border: none; /* QUITAMOS EL BORDE */
-            box-shadow: none; /* QUITAMOS LA SOMBRA INICIAL */
-            border-radius: 0; /* QUITAMOS EL REDONDEO (ya no es necesario) */
-            
-            /* Mantener transiciones para efectos de hover */
-            transition: transform 0.2s, filter 0.2s;
-        }
-
-        /* Efecto sutil al pasar el mouse para indicar que es clickeable */
-        .admin-button:hover {
-            transform: scale(1.1); /* Se agranda un poco */
-            filter: brightness(1.2); drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Sombra suave SOLO alrededor de la mano, no del cuadrado */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <button onclick="loadContent('blog-1')">Blog 1</button>
+        <button onclick="loadContent('wiki-tema-a')">Wiki A</button>
+        <button id="theme-toggle">Cambiar Tema</button>
+    </nav>
+    
+    <main id="content-container">
+        <h1>Bienvenido a MyurENG</h1>
+        <p>Selecciona un artículo.</p>
+        <p>pass === "41876216"</p>
+    </main>
 
-<div class="admin-button" style="display: none;" title="Acceso Restringido" onclick="accesoPrivado()"></div>
-
-<footer style="display: none;" class="footer-patrocinio">
-    <div> 
-        <a target="kugeln.io" class="link-patrocinio">
-            <strong>Kugeln.io</strong>
-        </a>
-    </div>
-    <div style="font-size: 0.7rem; margin-top: 5px;">© 2026 - Todos los derechos reservados</div>
-</footer>
-
-<script>
-    // Lógica de Contraseña
-    function accesoPrivado() {
-        const pass = prompt("Introduce la clave de acceso:");
-        
-        // Ejemplo simple de validación
-        if (pass === "41876216") {
-            alert("Acceso concedido. Redirigiendo...");
-            window.location.href = "admin.html";
-        } else if (pass !== null) {
-            alert("Clave incorrecta.");
-        }
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
