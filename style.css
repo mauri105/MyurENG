@@ -1,0 +1,18 @@
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+}
+
+[data-theme='dark'] {
+    --bg: #1a1a1a;
+    --text: #f0f0f0;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background 0.3s;
+}
+
+/* Ejemplo de color en párrafo */
+.coloreado { color: #ff5733; }
