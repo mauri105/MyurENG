@@ -1,147 +1,71 @@
-/* ==========================================================================
-   Variables de Entorno (Paleta de colores y Temas)
-   ========================================================================== */
-:root[data-theme="light"] {
-    --bg-color: #f8fafc;
-    --card-bg: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #64748b;
-    --border-color: #cbd5e1;
-    --btn-border-hover: #3b82f6; /* Azul */
-    --toggle-bg: #e2e8f0;
-}
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Acceso</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Vinculación del CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-:root[data-theme="dark"] {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --border-color: #334155;
-    --btn-border-hover: #10b981; /* Verde esmeralda para el modo oscuro */
-    --toggle-bg: #334155;
-}
+    <!-- Botón para alternar Tema -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+        <span class="icon-sun">☀️ Mode</span>
+    </button>
 
-/* ==========================================================================
-   Estilos Base
-   ========================================================================== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <div class="container">
+        <h1>Selecciona un Panel</h1>
+        <p class="subtitle">Introduce la contraseña correcta para acceder a cada subpágina.</p>
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    position: relative;
-    padding: 20px;
-}
+        <!-- Contenedor de la cuadrícula de botones -->
+        <div class="button-grid">
+            <button class="btn btn-main" onclick="accessPanel(1, 'pass1', 'subpagina1.html')">
+                <span class="btn-title">Panel Principal 1</span>
+                <span class="btn-desc">Acceso Estándar</span>
+            </button>
+            
+            <button class="btn btn-main" onclick="accessPanel(2, 'pass2', 'subpagina2.html')">
+                <span class="btn-title">Panel Principal 2</span>
+                <span class="btn-desc">Acceso Avanzado</span>
+            </button>
+            
+            <button class="btn btn-short" onclick="accessPanel(3, 'pass3', 'subpagina3.html')">
+                <span class="btn-title">Panel Secundario 3</span>
+            </button>
+        </div>
+    </div>
 
-.container {
-    width: 100%;
-    max-width: 640px;
-    text-align: center;
-}
+    <!-- Lógica básica para contraseñas y tema -->
+    <script>
+        // Cambiar entre tema claro y oscuro
+        const html = document.documentElement;
+        const toggleBtn = document.getElementById('themeToggle');
 
-h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            toggleBtn.querySelector('span').textContent = newTheme === 'light' ? '☀️ Claro' : '🌙 Oscuro';
+        });
 
-.subtitle {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-bottom: 40px;
-}
+        // Simulación de validación de contraseña para redirección
+        function accessPanel(panelId, correctPassword, targetUrl) {
+            const password = prompt(`Introduce la contraseña para el Botón ${panelId}:`);
+            
+            if (password === null) return; // Si el usuario cancela
 
-/* ==========================================================================
-   Alternador de Tema (Botón superior)
-   ========================================================================== */
-.theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: var(--toggle-bg);
-    color: var(--text-primary);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 0.85rem;
-    transition: background-color 0.2s;
-}
-
-/* ==========================================================================
-   Arquitectura de Botones (Grid y Efectos)
-   ========================================================================== */
-.button-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas iguales */
-    gap: 20px; /* Espacio entre botones */
-}
-
-/* Estilo base para todos los botones del panel */
-.btn {
-    background-color: var(--card-bg);
-    color: var(--text-primary);
-    border: 2px solid var(--border-color);
-    border-radius: 12px; /* Esquinas redondeadas */
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-    font-family: inherit;
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                border-color 0.2s ease, 
-                box-shadow 0.2s ease;
-}
-
-/* Botones 1 y 2 (Mayor altura) */
-.btn-main {
-    height: 140px;
-}
-
-/* Botón 3 (Menor altura, ocupa las dos columnas abajo) */
-.btn-short {
-    grid-column: span 2; /* Se estira para ocupar todo el ancho */
-    height: 80px; 
-}
-
-/* Efecto Hover (Paso del cursor) */
-.btn:hover {
-    transform: scale(1.03); /* Aumenta ligeramente de tamaño */
-    border-color: var(--btn-border-hover); /* Cambia el color del borde */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-}
-
-/* Textos dentro de los botones */
-.btn-title {
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.btn-desc {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    margin-top: 6px;
-}
-
-/* Opcional: Ajuste responsivo para pantallas muy pequeñas */
-@media (max-width: 480px) {
-    .button-grid {
-        grid-template-columns: 1fr; /* Pasa a una sola columna si la pantalla es muy chica */
-    }
-    .btn-short {
-        grid-column: span 1;
-    }
-}
+            if (password === correctPassword) {
+                alert('¡Contraseña correcta! Redirigiendo...');
+                window.location.href = targetUrl; // Cambia esto por tus subpáginas reales
+            } else {
+                alert('Contraseña incorrecta. Acceso denegado.');
+            }
+        }
+    </script>
+</body>
+</html>
