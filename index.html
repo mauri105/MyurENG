@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav>
-        <button onclick="loadContent('blog-1')">Blog 1</button>
-        <button onclick="loadContent('wiki-tema-a')">Wiki A</button>
-        <button id="theme-toggle">Cambiar Tema</button>
-    </nav>
-    
-    <main id="content-container">
-        <h1>Bienvenido a MyurENG</h1>
-        <p>Selecciona un artículo.</p>
-        <p>pass === "41876216"</p>
-    </main>
-
-    <script src="script.js"></script>
-</body>
+<div class="wiki-container">
+  <aside class="sidebar">
+    <input type="text" id="search" placeholder="Buscar artículos...">
+    <ul id="article-list">
+      <!-- Aquí inyectaremos los artículos dinámicamente con JS -->
+    </ul>
+  </aside>
+  
+  <main id="content-container">
+    <h1>Bienvenido</h1>
+    <img src="assets/banner.jpg" alt="Portada" class="hero-img">
+    <p>Empieza a explorar la wiki.</p>
+  </main>
+</div>
 </html>
