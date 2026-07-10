@@ -1,6 +1,8 @@
 :root {
     --bg: #ffffff;
     --text: #000000;
+    --font-main: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 }
 
 [data-theme='dark'] {
@@ -11,8 +13,21 @@
 body {
     background-color: var(--bg);
     color: var(--text);
+    font-family: var(--font-main);
     transition: background 0.3s;
+}
+
+code {
+    font-family: var(--font-mono);
 }
 
 /* Ejemplo de color en párrafo */
 .coloreado { color: #ff5733; }
+
+.gmn-img {
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+.gmn-img:hover {
+    transform: scale(1.02);
+}
