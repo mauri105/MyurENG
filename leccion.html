@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargando lección...</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="index.html">← Volver al inicio</a>
+  </nav>
+
+  <main class="lesson-container">
+    <!-- Aquí se inyectará todo el contenido -->
+    <article id="lesson-content">
+      <p class="loading">Cargando contenido de la lección...</p>
+    </article>
+  </main>
+
+  <!-- Marked.js vía CDN para interpretar Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Lógica de renderizado e interacciones -->
+  <script src="js/lesson-loader.js"></script>
+</body>
+</html>
