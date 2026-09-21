@@ -1,0 +1,313 @@
+/* ==========================================================================
+   Variables de Entorno (Paleta de colores y Temas)
+   ========================================================================== */
+:root[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border-color: #cbd5e1;
+    --btn-border-hover: #3b82f6; /* Azul */
+    --toggle-bg: #e2e8f0;
+    --highlight-bg: #fef08a; /* Amarillo suave para traducción activa */
+    
+    /* Colores gramaticales (Light) */
+    --color-verb: #dc2626;
+    --color-noun: #2563eb;
+    --color-adj:  #16a34a;
+    --color-adv:  #9333ea;
+    --color-pron: #d97706;
+    --color-prep: #db2777;
+    --color-num:  #0891b2;
+}
+
+:root[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --btn-border-hover: #10b981; /* Verde esmeralda */
+    --toggle-bg: #334155;
+    --highlight-bg: #854d0e; /* Tono ocre oscuro legible en Dark */
+
+    /* Colores gramaticales (Dark - tonos más luminosos) */
+    --color-verb: #f87171;
+    --color-noun: #60a5fa;
+    --color-adj:  #4ade80;
+    --color-adv:  #c084fc;
+    --color-pron: #fbbf24;
+    --color-prep: #f472b6;
+    --color-num:  #22d3ee;
+}
+
+/* ==========================================================================
+   Estilos Base Globales
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.7;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px;
+}
+
+/* Solo centramos verticalmente si el body tiene la clase .home-body (tu index.html) */
+body.home-body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================================
+   Página Principal (Index)
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 640px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+}
+
+/* Alternador de Tema */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--toggle-bg);
+    color: var(--text-primary);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+/* Grid de Botones */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.btn {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    font-family: inherit;
+    text-decoration: none; /* Por si usas <a> con clase .btn */
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.2s ease, 
+                box-shadow 0.2s ease;
+}
+
+.btn-main {
+    height: 140px;
+}
+
+.btn-short {
+    grid-column: span 2;
+    height: 80px; 
+}
+
+.btn:hover {
+    transform: scale(1.03);
+    border-color: var(--btn-border-hover);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.btn-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.btn-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+/* ==========================================================================
+   Página de Lección (leccion.html + Markdown)
+   ========================================================================== */
+.lesson-container {
+    max-width: 760px;
+    margin: 40px auto 80px auto;
+}
+
+.site-nav {
+    margin-bottom: 24px;
+}
+
+.site-nav a {
+    color: var(--btn-border-hover);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.site-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos de contenido Markdown */
+#lesson-content h1 {
+    font-size: 2.2rem;
+    margin: 1.5rem 0 1rem 0;
+    text-align: left;
+}
+
+#lesson-content h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 0.8rem 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 6px;
+}
+
+#lesson-content p {
+    margin-bottom: 1.2rem;
+}
+
+#lesson-content blockquote {
+    border-left: 4px solid var(--btn-border-hover);
+    background-color: var(--card-bg);
+    padding: 12px 16px;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+    color: var(--text-secondary);
+}
+
+#lesson-content code {
+    background-color: var(--toggle-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* ==========================================================================
+   Componente: Oraciones Especiales
+   ========================================================================== */
+.special-sentence-card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--card-bg);
+    padding: 16px 20px;
+    margin: 24px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.sentence-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.sentence-text {
+    flex-grow: 1;
+    margin: 0 !important;
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+.btn-icon {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.btn-icon:hover {
+    border-color: var(--btn-border-hover);
+}
+
+.btn-icon.active {
+    background-color: var(--toggle-bg);
+    border-color: var(--btn-border-hover);
+}
+
+/* Tokens / Palabras interactivas */
+.token {
+    cursor: pointer;
+    border-bottom: 1px dashed var(--border-color);
+    padding: 1px 4px;
+    border-radius: 4px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    display: inline-block;
+}
+
+/* Palabra revelando traducción */
+.token.showing-translation {
+    background-color: var(--highlight-bg);
+    border-bottom-style: solid;
+}
+
+/* Clases de gramática (activadas con el botón) */
+.colored .token.verb { color: var(--color-verb); font-weight: 600; }
+.colored .token.noun { color: var(--color-noun); font-weight: 600; }
+.colored .token.adj  { color: var(--color-adj);  font-weight: 600; }
+.colored .token.adv  { color: var(--color-adv);  font-weight: 600; }
+.colored .token.pron { color: var(--color-pron); font-weight: 600; }
+.colored .token.prep { color: var(--color-prep); font-weight: 600; }
+.colored .token.num  { color: var(--color-num);  font-weight: 600; }
+
+/* Traducción completa inferior */
+.sentence-full-translation {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-color);
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   Ajustes Responsivos
+   ========================================================================== */
+@media (max-width: 480px) {
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+    .btn-short {
+        grid-column: span 1;
+    }
+    .sentence-header {
+        gap: 8px;
+    }
+    .btn-icon {
+        padding: 6px 8px;
+        font-size: 1rem;
+    }
+}
