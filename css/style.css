@@ -449,3 +449,30 @@ h1 {
     padding: 40px;
     font-size: 1.05rem;
 }
+
+/* ==========================================================================
+   Aviso de Retroalimentación Flotante (Toast)
+   ========================================================================== */
+.feedback-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translate(-50%, -20px);
+  background-color: var(--card-bg);
+  color: var(--btn-border-hover);
+  border: 1.5px solid var(--btn-border-hover);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.feedback-toast.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
