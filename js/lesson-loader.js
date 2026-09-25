@@ -110,24 +110,16 @@ function attachSentenceEvents(card) {
     }
   });
 
-  // Eventos de palabras (Tokens)
+  // Eventos de palabras (Tokens): solo alternan la clase CSS
   tokens.forEach(token => {
-    const original = token.dataset.original;
-    const trans = token.dataset.trans;
-
-    const showTrans = () => {
-      token.textContent = trans;
-      token.classList.add('showing-translation');
-    };
-
-    const resetText = () => {
-      token.textContent = original;
-      token.classList.remove('showing-translation');
-    };
-
     // Hover (PC)
-    token.addEventListener('mouseenter', showTrans);
-    token.addEventListener('mouseleave', resetText);
+    token.addEventListener('mouseenter', () => {
+      token.classList.add('showing-translation');
+    });
+
+    token.addEventListener('mouseleave', () => {
+      token.classList.remove('showing-translation');
+    });
 
     // Tap / Clic (Móviles)
     token.addEventListener('click', (e) => {
@@ -135,13 +127,10 @@ function attachSentenceEvents(card) {
       const isAlreadyActive = token.classList.contains('showing-translation');
 
       // Limpia los demás tokens que pudieran estar abiertos
-      tokens.forEach(t => {
-        t.textContent = t.dataset.original;
-        t.classList.remove('showing-translation');
-      });
+      tokens.forEach(t => t.classList.remove('showing-translation'));
 
       if (!isAlreadyActive) {
-        showTrans();
+        token.classList.add('showing-translation');
       }
     });
   });
@@ -150,7 +139,6 @@ function attachSentenceEvents(card) {
 // Si se toca en cualquier parte vacía en un móvil, se restauran las palabras
 document.addEventListener('click', () => {
   document.querySelectorAll('.token.showing-translation').forEach(token => {
-    token.textContent = token.dataset.original;
     token.classList.remove('showing-translation');
   });
 });
