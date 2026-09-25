@@ -476,3 +476,9 @@ h1 {
   opacity: 1;
   transform: translate(-50%, 0);
 }
+
+/* Variante para errores */
+.feedback-toast.error {
+    color: #ef4444; /* Rojo legible */
+    border-color: #ef4444;
+}
