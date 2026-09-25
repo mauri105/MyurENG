@@ -311,3 +311,141 @@ h1 {
         font-size: 1rem;
     }
 }
+
+/* ==========================================================================
+   Cabecera y Navegación de los Paneles
+   ========================================================================== */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--btn-border-hover);
+}
+
+/* ==========================================================================
+   Buscador de Lecciones
+   ========================================================================== */
+.search-wrapper {
+    margin: 20px 0 35px 0;
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: var(--btn-border-hover);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Grid de Grupos de Lecciones
+   ========================================================================== */
+.groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    text-align: left;
+}
+
+/* Cada tarjeta de Grupo */
+.group-card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    transition: border-color 0.2s ease;
+}
+
+.group-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
+.group-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* Lista de lecciones dentro del grupo */
+.lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cada botón/ítem de lección */
+.lesson-item {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 14px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.lesson-item:hover {
+    transform: translateX(4px);
+    border-color: var(--btn-border-hover);
+}
+
+.lesson-item.disabled {
+    opacity: 0.55;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.lesson-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.lesson-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px;
+    font-size: 1.05rem;
+}
