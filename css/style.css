@@ -482,3 +482,191 @@ h1 {
     color: #ef4444; /* Rojo legible */
     border-color: #ef4444;
 }
+
+/* ==========================================================================
+   Estructura general de Paneles (English / Korean)
+   ========================================================================== */
+body.panel-body {
+  min-height: 100vh;
+  position: relative;
+  padding: 80px 24px 60px 24px; /* Espacio superior para que los botones de esquina no tapen nada */
+}
+
+/* Botones en las esquinas superiores (gemelos al Mode del index) */
+.nav-btn, .theme-toggle {
+  position: absolute;
+  top: 20px;
+  background-color: var(--toggle-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-left-btn {
+  left: 20px;
+}
+
+.top-right-btn {
+  right: 20px;
+}
+
+.nav-btn:hover, .theme-toggle:hover {
+  border-color: var(--btn-border-hover);
+  transform: translateY(-1px);
+}
+
+/* Contenedor principal de la página */
+.panel-container {
+  width: 100%;
+  max-width: 1200px; /* Ancho cómodo para que 3 columnas respiren bien en laptop */
+  margin: 0 auto;
+}
+
+/* Zona de título y buscador centrados */
+.panel-hero {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.panel-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Buscador centrado y con el doble de ancho */
+.search-wrapper {
+  margin: 24px auto 0 auto;
+  width: 100%;
+  max-width: 620px; /* El doble de ancho respecto a un buscador estándar */
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 22px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 30px; /* Estilo píldora elegante */
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.search-input:focus {
+  border-color: var(--btn-border-hover);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+/* ==========================================================================
+   Cuadrícula Responsive (Laptop: 3, Tablet: 2, Móvil: 1)
+   ========================================================================== */
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas exactas por defecto en laptop */
+  gap: 24px;
+}
+
+/* En tablets o pantallas medianas: 2 columnas */
+@media (max-width: 992px) {
+  .groups-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* En móviles: 1 columna */
+@media (max-width: 640px) {
+  .groups-grid {
+    grid-template-columns: 1fr;
+  }
+  body.panel-body {
+    padding-top: 100px; /* Más aire por si los botones de esquina quedan altos */
+  }
+}
+
+/* Tarjeta de cada grupo */
+.group-card {
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease;
+}
+
+.group-card:hover {
+  border-color: var(--btn-border-hover);
+}
+
+.group-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.group-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+/* Lista de lecciones */
+.lesson-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Enlace de lección con sangría francesa */
+.lesson-link {
+  display: block;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.45;
+  transition: color 0.15s ease, transform 0.15s ease;
+  
+  /* Sangría francesa para títulos largos:
+     La primera línea queda normal y las siguientes se meten 18px hacia adentro */
+  padding-left: 18px;
+  text-indent: -18px;
+}
+
+.lesson-link:hover {
+  color: var(--btn-border-hover);
+  transform: translateX(3px);
+}
+
+.lesson-link.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Mensaje sin resultados */
+.no-results {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-top: 40px;
+}
