@@ -60,8 +60,17 @@
             if (password === null) return; // Si el usuario cancela
 
             if (password === correctPassword) {
-                alert('¡Contraseña correcta! Redirigiendo...');
-                window.location.href = targetUrl; // Cambia esto por tus subpáginas reales
+              // 1. Mostrar un texto en la interfaz (por ejemplo en un <p id="feedback"></p>)
+              const feedback = document.getElementById('feedback');
+              if (feedback) {
+                feedback.textContent = '¡Contraseña correcta! Redirigiendo...';
+                feedback.style.color = 'var(--btn-border-hover)';
+              }
+            
+              // 2. Redirige automáticamente tras 1 segundo sin pedir ningún click
+              setTimeout(() => {
+                window.location.href = 'english.html';
+              }, 1000);
             } else {
                 alert('Contraseña incorrecta. Acceso denegado.');
             }
