@@ -63,9 +63,12 @@ async function loadAndRenderLesson(filePath) {
 
 // Construye la estructura HTML de la tarjeta
 function buildSentenceHtml(data) {
-  const tokensHtml = data.tokens.map(token => 
-    `<span class="token ${token.type || ''}" data-original="${token.text}" data-trans="${token.trans}">${token.text}</span>`
-  ).join(' ');
+  const tokensHtml = data.tokens.map(token => `
+    <span class="token ${token.type || ''}">
+      <span class="token-original">${token.text}</span>
+      <span class="token-trans">${token.trans}</span>
+    </span>
+  `).join(' ');
 
   return `
     <div class="special-sentence-card">
