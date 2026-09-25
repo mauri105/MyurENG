@@ -53,35 +53,46 @@
             toggleBtn.querySelector('span').textContent = newTheme === 'light' ? '☀️ Mode' : '🌙 Mode';
         });
 
-        // Función para mostrar el aviso flotante sin alterar el HTML
-        function showSuccessToast(message, targetUrl) {
+        // Notificación flotante universal (éxito o error)
+        function showToast(message, type = 'success', targetUrl = null) {
+            // Si ya había un toast previo en pantalla, eliminarlo
+            const existingToast = document.querySelector('.feedback-toast');
+            if (existingToast) existingToast.remove();
+        
             const toast = document.createElement('div');
-            toast.className = 'feedback-toast';
+            toast.className = `feedback-toast ${type}`;
             toast.textContent = message;
             document.body.appendChild(toast);
-
-            // Activa animación de entrada
+        
+            // Animación de entrada
             requestAnimationFrame(() => {
                 toast.classList.add('visible');
             });
-
-            // Redirige automáticamente tras 1 segundo al destino correspondiente
-            setTimeout(() => {
-                window.location.href = targetUrl;
-            }, 1000);
+        
+            if (type === 'success' && targetUrl) {
+                // Éxito: espera 1 segundo y redirige
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 1000);
+            } else {
+                // Error: se desvanece solo a los 2.5 segundos y se destruye
+                setTimeout(() => {
+                    toast.classList.remove('visible');
+                    setTimeout(() => toast.remove(), 300); // Espera a que termine la transición CSS
+                }, 2500);
+            }
         }
-
+        
         // Validación de contraseña para redirección
         function accessPanel(panelId, correctPassword, targetUrl) {
             const password = prompt(`Introduce la contraseña para el Panel ${panelId}:`);
             
             if (password === null) return; // Si el usuario cancela
-
+        
             if (password === correctPassword) {
-                // Muestra el mensaje animado y salta a targetUrl (english.html, korean.html, etc.)
-                showSuccessToast('✓ ¡Contraseña correcta! Redirigiendo...', targetUrl);
+                showToast('✓ ¡Contraseña correcta! Redirigiendo...', 'success', targetUrl);
             } else {
-                alert('Contraseña incorrecta. Acceso denegado.');
+                showToast('✕ Contraseña incorrecta. Acceso denegado.', 'error');
             }
         }
     </script>
