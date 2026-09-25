@@ -50,27 +50,36 @@
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             html.setAttribute('data-theme', newTheme);
-            toggleBtn.querySelector('span').textContent = newTheme === 'light' ? '☀️ Claro' : '🌙 Oscuro';
+            toggleBtn.querySelector('span').textContent = newTheme === 'light' ? '☀️ Mode' : '🌙 Mode';
         });
 
-        // Simulación de validación de contraseña para redirección
+        // Función para mostrar el aviso flotante sin alterar el HTML
+        function showSuccessToast(message, targetUrl) {
+            const toast = document.createElement('div');
+            toast.className = 'feedback-toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            // Activa animación de entrada
+            requestAnimationFrame(() => {
+                toast.classList.add('visible');
+            });
+
+            // Redirige automáticamente tras 1 segundo al destino correspondiente
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 1000);
+        }
+
+        // Validación de contraseña para redirección
         function accessPanel(panelId, correctPassword, targetUrl) {
-            const password = prompt(`Introduce la contraseña para el Botón ${panelId}:`);
+            const password = prompt(`Introduce la contraseña para el Panel ${panelId}:`);
             
             if (password === null) return; // Si el usuario cancela
 
             if (password === correctPassword) {
-              // 1. Mostrar un texto en la interfaz (por ejemplo en un <p id="feedback"></p>)
-              const feedback = document.getElementById('feedback');
-              if (feedback) {
-                feedback.textContent = '¡Contraseña correcta! Redirigiendo...';
-                feedback.style.color = 'var(--btn-border-hover)';
-              }
-            
-              // 2. Redirige automáticamente tras 1 segundo sin pedir ningún click
-              setTimeout(() => {
-                window.location.href = 'english.html';
-              }, 1000);
+                // Muestra el mensaje animado y salta a targetUrl (english.html, korean.html, etc.)
+                showSuccessToast('✓ ¡Contraseña correcta! Redirigiendo...', targetUrl);
             } else {
                 alert('Contraseña incorrecta. Acceso denegado.');
             }
