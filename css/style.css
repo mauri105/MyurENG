@@ -29,7 +29,7 @@
     --border-color: #334155;
     --btn-border-hover: #10b981; /* Verde esmeralda */
     --toggle-bg: #334155;
-    --highlight-bg: #854d0e; /* Tono ocre oscuro legible en Dark */
+    --highlight-bg: #7F7F7F; /*#854d0e Tono ocre oscuro legible en Dark */
 
     /* Colores gramaticales (Dark - tonos más luminosos) */
     --color-adj:  #fbbf24;
