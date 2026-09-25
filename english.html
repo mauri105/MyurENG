@@ -3,50 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel Principal 1 - Lecciones</title>
-  <link rel="stylesheet" href="style.css">
+  <title>English - Lecciones</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
-<body class="home-body">
+<body>
 
-  <!-- Botón de cambio de tema idéntico al index -->
-  <button class="theme-toggle" id="themeToggle">☀️ Mode</button>
+  <div class="container" style="max-width: 900px; margin: 0 auto;">
+    
+    <!-- Barra superior con regreso y cambio de tema -->
+    <header class="panel-header">
+      <a href="index.html" class="back-link">← Volver a Paneles</a>
+      <button class="theme-toggle" id="themeToggle" style="position: static;">☀️ Mode</button>
+    </header>
 
-  <div class="container">
-    <nav class="site-nav" style="text-align: left; margin-bottom: 20px;">
-      <a href="index.html">← Volver a Paneles</a>
-    </nav>
+    <h1 style="text-align: left;">English Lessons</h1>
+    <p class="subtitle" style="text-align: left; margin-bottom: 20px;">
+      Selecciona una lección o utiliza el buscador para filtrar temas específicos.
+    </p>
 
-    <h1>Panel Principal 1</h1>
-    <p class="subtitle">Selecciona una lección para comenzar a estudiar.</p>
-
-    <div class="button-grid">
-      <!-- Lección 1 como botón principal -->
-      <a href="leccion.html?id=pasado-simple" class="btn btn-main">
-        <span class="btn-title">Lección 1</span>
-        <span class="btn-desc">Simple Past (Regulares e Irregulares)</span>
-      </a>
-
-      <!-- Lección 2 (futura o en desarrollo) -->
-      <a href="#" class="btn btn-main" style="opacity: 0.6; pointer-events: none;">
-        <span class="btn-title">Lección 2</span>
-        <span class="btn-desc">Próximamente (TBD)</span>
-      </a>
-
-      <!-- Botón ancho inferior para recursos extras o vocabulario -->
-      <a href="#" class="btn btn-short" style="opacity: 0.6; pointer-events: none;">
-        <span class="btn-title">Vocabulario y Recursos Extra</span>
-        <span class="btn-desc">Material de apoyo</span>
-      </a>
+    <!-- Buscador en tiempo real -->
+    <div class="search-wrapper">
+      <input 
+        type="text" 
+        id="lessonSearch" 
+        class="search-input" 
+        placeholder="🔍 Buscar lección (ej: 'Past', 'Irregular', 'Grupo 1')..."
+        autocomplete="off"
+      >
     </div>
+
+    <!-- Contenedor de Grupos en Grid -->
+    <main class="groups-grid" id="groupsContainer">
+
+      <!-- GRUPO 1 -->
+      <section class="group-card">
+        <h2 class="group-title">Grupo 1: Fundamentos y Pasado</h2>
+        <p class="group-desc">Estructuras básicas del tiempo pasado en inglés.</p>
+        
+        <div class="lesson-list">
+          <!-- Lección 1 -->
+          <a href="leccion.html?id=pasado-simple" class="lesson-item">
+            <span class="lesson-name">Lección 1: Simple Past</span>
+            <span class="lesson-subtitle">Verbos regulares e irregulares</span>
+          </a>
+
+          <!-- Lección 2 -->
+          <a href="leccion.html?id=past-continuous" class="lesson-item">
+            <span class="lesson-name">Lección 2: Past Continuous</span>
+            <span class="lesson-subtitle">Acciones en progreso en el pasado</span>
+          </a>
+
+          <!-- Futura lección -->
+          <a href="#" class="lesson-item disabled">
+            <span class="lesson-name">Lección 3: Used to & Would</span>
+            <span class="lesson-subtitle">Hábitos pasados (Próximamente)</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- GRUPO 2 (Ejemplo para cuando crees más grupos) -->
+      <section class="group-card">
+        <h2 class="group-title">Grupo 2: Tiempos Perfectos</h2>
+        <p class="group-desc">Conectando el pasado con el momento presente.</p>
+        
+        <div class="lesson-list">
+          <a href="#" class="lesson-item disabled">
+            <span class="lesson-name">Lección 4: Present Perfect Simple</span>
+            <span class="lesson-subtitle">Experiencias y resultados recientes</span>
+          </a>
+          <a href="#" class="lesson-item disabled">
+            <span class="lesson-name">Lección 5: Present Perfect vs Past Simple</span>
+            <span class="lesson-subtitle">Diferencias clave y usos</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Mensaje cuando la búsqueda no coincide con nada -->
+    <div id="noResultsMsg" class="no-results" style="display: none;">
+      No se encontraron lecciones que coincidan con tu búsqueda.
+    </div>
+
   </div>
 
-  <!-- Script para mantener sincronizado el tema (si usas script de theme) -->
+  <!-- JavaScript: Buscador dinámico + Modo oscuro sincronizado -->
   <script>
-    // Si ya tienes un script para alternar light/dark, inclúyelo aquí también
+    // 1. Buscador en tiempo real
+    const searchInput = document.getElementById('lessonSearch');
+    const groupCards = document.querySelectorAll('.group-card');
+    const noResultsMsg = document.getElementById('noResultsMsg');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      let totalVisibleLessons = 0;
+
+      groupCards.forEach(group => {
+        const lessons = group.querySelectorAll('.lesson-item');
+        let visibleInThisGroup = 0;
+
+        lessons.forEach(lesson => {
+          const text = lesson.textContent.toLowerCase();
+          const match = text.includes(term);
+          lesson.style.display = match ? 'flex' : 'none';
+          if (match) visibleInThisGroup++;
+        });
+
+        // Si el término coincide con el título del grupo, mostrar todas sus lecciones
+        const groupTitle = group.querySelector('.group-title').textContent.toLowerCase();
+        if (groupTitle.includes(term) && term !== '') {
+          lessons.forEach(l => l.style.display = 'flex');
+          visibleInThisGroup = lessons.length;
+        }
+
+        // Si no hay lecciones visibles en este grupo, ocultar toda la tarjeta
+        if (visibleInThisGroup === 0 && term !== '') {
+          group.style.display = 'none';
+        } else {
+          group.style.display = 'block';
+          totalVisibleLessons += visibleInThisGroup;
+        }
+      });
+
+      // Mostrar mensaje de "no encontrado" si todo está oculto
+      noResultsMsg.style.display = (totalVisibleLessons === 0 && term !== '') ? 'block' : 'none';
+    });
+
+    // 2. Control de Tema Light / Dark (con memoria LocalStorage)
     const toggleBtn = document.getElementById('themeToggle');
     const html = document.documentElement;
 
-    // Cargar preferencia guardada si existe
     const savedTheme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', savedTheme);
     toggleBtn.textContent = savedTheme === 'dark' ? '🌙 Mode' : '☀️ Mode';
