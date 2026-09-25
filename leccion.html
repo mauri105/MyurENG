@@ -1,26 +1,76 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cargando lección...</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Vinculación del CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <nav class="site-nav">
-    <a href="index.html">← Volver al inicio</a>
-  </nav>
+<body class="panel-body">
+
+  <!-- Botón Volver (Esquina superior izquierda) -->
+  <a href="index.html" id="backBtn" class="nav-btn top-left-btn">
+    ← Volver a Paneles
+  </a>
+
+  <!-- Botón Modo (Esquina superior derecha) -->
+  <button class="theme-toggle top-right-btn" id="themeToggle" aria-label="Cambiar tema">
+    <span class="icon-theme">☀️ Mode</span>
+  </button>
 
   <main class="lesson-container">
-    <!-- Aquí se inyectará todo el contenido -->
     <article id="lesson-content">
-      <p class="loading">Cargando contenido de la lección...</p>
+      <p style="color: var(--text-secondary);">Cargando lección...</p>
     </article>
   </main>
 
-  <!-- Marked.js vía CDN para interpretar Markdown -->
+  <!-- Marked.js para interpretar Markdown -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <!-- Lógica de renderizado e interacciones -->
+  <!-- Lector interactivo de la lección -->
   <script src="js/lesson-loader.js"></script>
+
+  <!-- Script para Modo Oscuro y Botón Volver inteligente -->
+  <script>
+    // 1. Sincronización de Modo Oscuro
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById('themeToggle');
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    toggleBtn.querySelector('span').textContent = savedTheme === 'dark' ? '🌙 Mode' : '☀️ Mode';
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      toggleBtn.querySelector('span').textContent = newTheme === 'dark' ? '🌙 Mode' : '☀️ Mode';
+    });
+
+    // 2. Redirección inteligente del botón Volver según ?from=...
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromPanel = urlParams.get('from');
+    const backBtn = document.getElementById('backBtn');
+
+    if (fromPanel === 'english') {
+      backBtn.href = 'english.html';
+      backBtn.textContent = '← Volver a English';
+    } else if (fromPanel === 'korean') {
+      backBtn.href = 'korean.html';
+      backBtn.textContent = '← Volver a Korean';
+    } else {
+      // Fallback: si no viene el parámetro, regresa en el historial del navegador
+      backBtn.href = '#';
+      backBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.history.length > 1 ? window.history.back() : window.location.href = 'index.html';
+      });
+    }
+  </script>
 </body>
 </html>
