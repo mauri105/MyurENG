@@ -12,13 +12,13 @@
     --highlight-bg: #fef08a; /* Amarillo suave para traducción activa */
     
     /* Colores gramaticales (Light) */
-    --color-verb: #dc2626;
-    --color-noun: #2563eb;
-    --color-adj:  #16a34a;
-    --color-adv:  #9333ea;
-    --color-pron: #d97706;
+    --color-adj:  #d97706;
+    --color-adv:  #0891b2;
     --color-prep: #db2777;
-    --color-num:  #0891b2;
+    --color-pron: #dc2626;
+    --color-noun: #2563eb;
+    --color-num:  #9333ea;
+    --color-verb: #16a34a;
 }
 
 :root[data-theme="dark"] {
@@ -32,13 +32,13 @@
     --highlight-bg: #854d0e; /* Tono ocre oscuro legible en Dark */
 
     /* Colores gramaticales (Dark - tonos más luminosos) */
-    --color-verb: #f87171;
-    --color-noun: #60a5fa;
-    --color-adj:  #4ade80;
-    --color-adv:  #c084fc;
-    --color-pron: #fbbf24;
+    --color-adj:  #fbbf24;
+    --color-adv:  #22d3ee;
     --color-prep: #f472b6;
-    --color-num:  #22d3ee;
+    --color-pron: #f87171;
+    --color-noun: #60a5fa;
+    --color-num:  #c084fc;
+    --color-verb: #4ade80;
 }
 
 /* ==========================================================================
@@ -258,20 +258,51 @@ h1 {
     border-color: var(--btn-border-hover);
 }
 
-/* Tokens / Palabras interactivas */
+/* Tokens / Palabras interactivas con tamaño reservado */
 .token {
+    display: inline-grid;
+    grid-template-areas: "content";
+    align-items: center;
+    justify-items: center;
     cursor: pointer;
     border-bottom: 1px dashed var(--border-color);
     padding: 1px 4px;
     border-radius: 4px;
-    transition: background-color 0.15s ease, color 0.15s ease;
-    display: inline-block;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    vertical-align: baseline;
 }
 
-/* Palabra revelando traducción */
+/* Ambas capas se ubican en la misma celda para fijar el ancho máximo */
+.token-original,
+.token-trans {
+    grid-area: content;
+    white-space: nowrap;
+}
+
+/* Estado normal: original visible, traducción oculta (pero apartando espacio) */
+.token-original {
+    visibility: visible;
+}
+
+.token-trans {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Estado activo (Hover en PC o Tap en móvil): se invierte la visibilidad */
 .token.showing-translation {
     background-color: var(--highlight-bg);
     border-bottom-style: solid;
+}
+
+.token.showing-translation .token-original {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.token.showing-translation .token-trans {
+    visibility: visible;
+    pointer-events: auto;
 }
 
 /* Clases de gramática (activadas con el botón) */
