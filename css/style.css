@@ -290,10 +290,16 @@ h1 {
 }
 
 /* Estado activo (Hover en PC o Tap en móvil): se invierte la visibilidad */
+/* Resaltado universal que no choca con ningún color */
 .token.showing-translation {
+  background-color: color-mix(in srgb, currentColor 18%, transparent);
+  border-bottom: 2px solid currentColor;
+  border-radius: 4px;
+}
+/*.token.showing-translation {
     background-color: var(--highlight-bg);
     border-bottom-style: solid;
-}
+}*/
 
 .token.showing-translation .token-original {
     visibility: hidden;
