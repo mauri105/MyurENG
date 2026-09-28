@@ -3,60 +3,199 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel Principal 1 - Lecciones</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Korean Lessons</title>
+  <!-- Tipografía Inter (igual a index.html) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Vinculación del CSS unificado -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="home-body">
+<body class="panel-body">
 
-  <!-- Botón de cambio de tema idéntico al index -->
-  <button class="theme-toggle" id="themeToggle">☀️ Mode</button>
+  <!-- Botón Volver (Esquina superior izquierda) -->
+  <a href="index.html" class="nav-btn top-left-btn">
+    ← Volver a Paneles
+  </a>
 
-  <div class="container">
-    <nav class="site-nav" style="text-align: left; margin-bottom: 20px;">
-      <a href="index.html">← Volver a Paneles</a>
-    </nav>
+  <!-- Botón Modo (Esquina superior derecha) -->
+  <button class="theme-toggle top-right-btn" id="themeToggle" aria-label="Cambiar tema">
+    <span class="icon-theme">☀️ Mode</span>
+  </button>
 
-    <h1>Panel Principal 1</h1>
-    <p class="subtitle">Selecciona una lección para comenzar a estudiar.</p>
+  <div class="panel-container">
+    
+    <!-- Zona de cabecera centrada -->
+    <header class="panel-hero">
+      <h1 class="panel-title">Korean Lessons</h1>
+      <p class="subtitle">Selecciona una lección o utiliza el buscador para filtrar temas específicos.</p>
 
-    <div class="button-grid">
-      <!-- Lección 1 como botón principal -->
-      <a href="leccion.html?id=pasado-simple" class="btn btn-main">
-        <span class="btn-title">Lección 1</span>
-        <span class="btn-desc">Simple Past (Regulares e Irregulares)</span>
-      </a>
+      <!-- Buscador ensanchado y centrado -->
+      <div class="search-wrapper">
+        <input 
+          type="text" 
+          id="lessonSearch" 
+          class="search-input" 
+          placeholder="🔍 Buscar lección..."
+          autocomplete="off"
+        >
+      </div>
+    </header>
 
-      <!-- Lección 2 (futura o en desarrollo) -->
-      <a href="#" class="btn btn-main" style="opacity: 0.6; pointer-events: none;">
-        <span class="btn-title">Lección 2</span>
-        <span class="btn-desc">Próximamente (TBD)</span>
-      </a>
+    <!-- Cuadrícula responsive de 3 columnas (1 2 3 / 4 5 6...) -->
+    <main class="groups-grid" id="groupsContainer">
 
-      <!-- Botón ancho inferior para recursos extras o vocabulario -->
-      <a href="#" class="btn btn-short" style="opacity: 0.6; pointer-events: none;">
-        <span class="btn-title">Vocabulario y Recursos Extra</span>
-        <span class="btn-desc">Material de apoyo</span>
-      </a>
+      <!-- GRUPO 1 -->
+      <section class="group-card">
+        <h2 class="group-title">Grupo 1: Fundamentos y Pasado</h2>
+        <p class="group-desc">Estructuras básicas del tiempo pasado en inglés.</p>
+        
+        <ul class="lesson-list">
+          <li>
+            <a href="leccion.html?id=pasado-simple&from=korean" class="lesson-link">
+              <span class="lesson-name">Lección 1: Simple Past (Regulares e Irregulares)</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="lesson-link">
+              <span class="lesson-name">Lección 2: Past Continuous y acciones en progreso</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="lesson-link">
+              <span class="lesson-name">Lección 3: En caso de que el nombre de una lección sea muy largo, que haya una pequeña sangría para que sea más fácil leer</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- GRUPO 2 -->
+      <section class="group-card">
+        <h2 class="group-title">Grupo 2: Tiempos Perfectos</h2>
+        <p class="group-desc">Conectando el pasado con el momento presente.</p>
+        
+        <ul class="lesson-list">
+          <li>
+            <a href="#" class="lesson-link disabled">
+              <span class="lesson-name">Lección 4: Present Perfect Simple</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="lesson-link disabled">
+              <span class="lesson-name">Lección 5: Present Perfect vs Past Simple</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="lesson-link disabled">
+              <span class="lesson-name">Lección 6: Present Perfect Continuous</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- GRUPO 3 -->
+      <section class="group-card">
+        <h2 class="group-title">Grupo 3: Futuro y Predicciones</h2>
+        <p class="group-desc">Formas de expresar eventos venideros.</p>
+        
+        <ul class="lesson-list">
+          <li>
+            <a href="#" class="lesson-link disabled">
+              <span class="lesson-name">Lección 7: Will vs Going to</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="lesson-link disabled">
+              <span class="lesson-name">Lección 8: Future Continuous</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- GRUPO 4 (Se coloca abajo en la fila 2 automáticamente) -->
+      <section class="group-card">
+        <h2 class="group-title">Grupo 4: Modales y Condicionales</h2>
+        <p class="group-desc">Hipotéticos, permisos y posibilidades.</p>
+        
+        <ul class="lesson-list">
+          <li>
+            <a href="#" class="lesson-link disabled">
+              <span class="lesson-name">Lección 9: Zero and First Conditional</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="lesson-link disabled">
+              <span class="lesson-name">Lección 10: Second Conditional</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- Mensaje cuando nada coincide en la búsqueda -->
+    <div id="noResultsMsg" class="no-results" style="display: none;">
+      No se encontraron lecciones que coincidan con tu búsqueda.
     </div>
+
   </div>
 
-  <!-- Script para mantener sincronizado el tema (si usas script de theme) -->
+  <!-- Lógica: Buscador y Sincronización de Modo Claro/Oscuro -->
   <script>
-    // Si ya tienes un script para alternar light/dark, inclúyelo aquí también
-    const toggleBtn = document.getElementById('themeToggle');
+    // 1. Alternar Tema (Sincronizado con index.html)
     const html = document.documentElement;
+    const toggleBtn = document.getElementById('themeToggle');
 
-    // Cargar preferencia guardada si existe
+    // Cargar preferencia existente de localStorage
     const savedTheme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', savedTheme);
-    toggleBtn.textContent = savedTheme === 'dark' ? '🌙 Mode' : '☀️ Mode';
+    toggleBtn.querySelector('span').textContent = savedTheme === 'dark' ? '🌙 Mode' : '☀️ Mode';
 
     toggleBtn.addEventListener('click', () => {
       const currentTheme = html.getAttribute('data-theme');
       const newTheme = currentTheme === 'light' ? 'dark' : 'light';
       html.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
-      toggleBtn.textContent = newTheme === 'dark' ? '🌙 Mode' : '☀️ Mode';
+      toggleBtn.querySelector('span').textContent = newTheme === 'dark' ? '🌙 Mode' : '☀️ Mode';
+    });
+
+    // 2. Buscador en tiempo real
+    const searchInput = document.getElementById('lessonSearch');
+    const groupCards = document.querySelectorAll('.group-card');
+    const noResultsMsg = document.getElementById('noResultsMsg');
+
+    searchInput.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      let totalVisibleLessons = 0;
+
+      groupCards.forEach(group => {
+        const lessons = group.querySelectorAll('.lesson-list li');
+        let visibleInThisGroup = 0;
+
+        lessons.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          const match = text.includes(term);
+          item.style.display = match ? 'block' : 'none';
+          if (match) visibleInThisGroup++;
+        });
+
+        // Si el término coincide con el título del grupo, mostramos todo el grupo
+        const groupTitle = group.querySelector('.group-title').textContent.toLowerCase();
+        if (groupTitle.includes(term) && term !== '') {
+          lessons.forEach(i => i.style.display = 'block');
+          visibleInThisGroup = lessons.length;
+        }
+
+        // Si no hay lecciones coincidentes en el grupo, ocultamos la tarjeta entera
+        if (visibleInThisGroup === 0 && term !== '') {
+          group.style.display = 'none';
+        } else {
+          group.style.display = 'flex';
+          totalVisibleLessons += visibleInThisGroup;
+        }
+      });
+
+      noResultsMsg.style.display = (totalVisibleLessons === 0 && term !== '') ? 'block' : 'none';
     });
   </script>
 </body>
