@@ -17,38 +17,6 @@ A continuación las tablas de [Romanización Revisada del Coreano](https://es.wi
 | **Inicial** | *g* | *kk* | *n* | *d* | *tt* | *r* | *m* | *b* | *pp* | *s* | *ss* | – | *j* | *jj* | *ch* | *k* | *t* | *p* | *h* |
 | **Final** | *k* | *k* | *n* | *t* | – | *l* | *m* | *p* | – | *t* | *t* | *ng* | *t* | – | *t* | *k* | *t* | *p* | *t* |
 
-## 1. Verbos Irregulares
-A diferencia de los verbos regulares que terminan en *-ed*, los verbos irregulares cambian su estructura completa. 
+## Teclado
 
-Pasa el cursor sobre las palabras o tócalas para ver su traducción individual:
-
-```sentence
-{
-  "fullTranslation": "Ayer compré dos libros interesantes en la tienda.",
-  "tokens": [
-    { "text": "Yesterday", "trans": "Ayer", "type": "adv" },
-    { "text": "I", "trans": "yo", "type": "pron" },
-    { "text": "bought", "trans": "compré", "type": "verb" },
-    { "text": "two", "trans": "dos", "type": "num" },
-    { "text": "interesting books", "trans": "libros interesantes", "type": "noun" },
-    { "text": "at the store.", "trans": "en la tienda.", "type": "prep" }
-  ]
-}
-```
-
-> **Nota gramatical:** El verbo *bought* proviene del infinitivo *to buy*. En oraciones afirmativas en pasado simple nunca usamos el auxiliar *did*.
-
-## 2. Forma Negativa
-Para formar oraciones negativas usamos el auxiliar **did not** (o la contracción **didn't**) y el verbo regresa a su forma base:
-
-```sentence
-{
-  "fullTranslation": "Ella no vio esa película la semana pasada.",
-  "tokens": [
-    { "text": "She", "trans": "Ella", "type": "pron" },
-    { "text": "didn't see", "trans": "no vio", "type": "verb" },
-    { "text": "that movie", "trans": "esa película", "type": "noun" },
-    { "text": "last week.", "trans": "la semana pasada.", "type": "adv" }
-  ]
-}
-```
+La distribución de consonantes y vocales está diseñada para escribir las consonantes con la mano izquierda, y las vocales con la mano derecha, tal que se usan ambas manos en el proceso de escritura.
