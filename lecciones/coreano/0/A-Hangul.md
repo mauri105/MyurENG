@@ -2,6 +2,8 @@
 
 **Hangul** es el sistema de escritura del idioma coreano. Al igual que el español, por lo general, se lee como se escribe (habiendo excepciones).
 
+A continuación las tablas de [Romanización Revisada del Coreano](https://es.wikipedia.org/wiki/Romanizaci%C3%B3n_revisada_del_coreano) del artículo de Wikipedia.
+
 ## Vocales
 
 | Hangul | ㅏ | ㅐ | ㅑ | ㅒ | ㅓ | ㅔ | ㅕ | ㅖ | ㅗ | ㅘ | ㅙ | ㅚ | ㅛ | ㅜ | ㅝ | ㅞ | ㅟ | ㅠ | ㅡ | ㅢ | ㅣ |
